@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BidMyRide</title>
+    {% load static %}
+    <style>
+      body {
+        /* set background image */
+        background-image: url("{% static 'background.png' %}");
+      }
+      nav {
+        background-color: black;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+      nav a {
+        float: left;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      nav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      nav a.active {
+        background-color: #4caf50;
+        color: white;
+      }
+      .book-now {
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        transform: translate(-50%, -50%);
+        background-color: #4caf50;
+        color: white;
+        padding: 20px;
+        font-size: 30px;
+        border: none;
+        cursor: pointer;
+        margin-left: 50px;
+      }
+      .book-now:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="landing-page.html">Home</a>
+      <a href="https://www.linkedin.com/in/chaitanya-arora-a41a8821a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BgMJeHe1sRyygQJzi%2Bjlh6w%3D%3D">About Us</a>
+      <a href="https://www.linkedin.com/in/chaitanya-arora-a41a8821a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BgMJeHe1sRyygQJzi%2Bjlh6w%3D%3D">Contact Us</a>
+      <a href="login">Login</a>
+    </nav>
+    <button class="book-now" onclick="window.location.href='login'">
+      BOOK NOW
+    </button>
+  </body>
+</html>

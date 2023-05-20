@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Login</title>
+  <style>
+    body {
+  background-image: linear-gradient(to right, #1A1A1D, #343A40);
+  color: #FFFFFF;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 48px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px #000000;
+}
+
+form {
+  margin: auto;
+  width: 50%;
+  max-width: 500px;
+  padding: 20px;
+  background-color: rgba(255,255,255,0.1);
+  border: 2px solid #FFFFFF;
+  border-radius: 10px;
+  box-shadow: inset -2px -2px 5px #000000;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    box-shadow: inset -2px -2px 5px #000000, inset -1px -1px #FFFFFF; 
+}
+
+input[type="submit"] {
+    background-color: #FFC107;
+    color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: inset -2px -2px #000000, inset -1px -1px #FFFFFF; 
+}
+
+input[type="submit"]:hover {
+    background-color: #FFE082;
+}
+
+input[type="submit"]:active {
+    transform: scale(0.95);
+}
+  </style>
+</head>
+<body>
+  <h1>User Login</h1>
+  <form method="POST">
+    {%csrf_token%}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <input type="submit" value="Login">
+  </form>
+</body>
+</html>

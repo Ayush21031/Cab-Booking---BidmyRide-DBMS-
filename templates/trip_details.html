@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Billing Page</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-size: 24px;
+    }
+    table {
+      border: 5px solid white;
+      border-collapse: collapse;
+      margin: 20px auto;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: goldenrod;
+    }
+    tr:nth-child(even) {
+      background-color: black;
+    }
+    tr:hover {
+      background-color: #FFFF99;
+    }
+    input[type=range] {
+      width: 100%;
+    }
+    input[type=submit] {
+      font-size: 16px;
+      padding: 10px;
+      margin: 20px auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <form method = "POST">
+    {%csrf_token%}
+    <table>
+      <tr>
+        <th>Distance Travelled</th>
+        <td>{{distance}} km</td>
+      </tr>
+      <tr>
+        <th>Price</th>
+        <td>${{fare}}</td>
+      </tr>
+      <tr>
+        <th>Driver Name</th>
+        <td>{{driver_name}}</td>
+      </tr>
+      <tr>
+        <th>Rider Name</th>
+        <td>{{rider_name}}</td>
+      </tr>
+      <tr>
+        <th>Rating</th>
+        <td><input type="range" min="0" max="5" value="3" name = "rating"></td>
+      </tr>
+      <tr>
+        <th> Pay Bill </th>
+        <td><button type="submit">Pay Bill</button></td> 
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

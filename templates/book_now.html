@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Open Maps API Example</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+  <style>
+    body {
+      background-color: black;
+      color: goldenrod;
+      margin: 20px;
+    }
+    .map {
+      height: 500px;
+      width: 45%;
+      float: left;
+      margin-right: 5%;
+    }
+    .coords {
+      clear: both;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+</head>
+<body>
+  <div class="map" id="pickup-map"></div>
+  <div class="map" id="drop-map"></div>
+  <div class="coords" id="pickup"></div>
+  <div class="coords" id="drop"></div>
+  <div>
+    <input type="range" min="0" max="2" step="1" value="0" onchange="changeCarType(this.value)">
+    <span id="car-type">Go</span>
+  </div>
+  <div>
+    <select id="preference" onchange="changePreference(this.value)">
+      <option value="experience">Experience</option>
+      <option value="rating">Rating</option>
+      <option value="price">Price</option>
+    </select>
+  </div>
+  <script>
+    var pickupMap = L.map('pickup-map').setView([51.505, -0.09], 13);
+    var dropMap = L.map('drop-map').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      tileSize: 512,
+      zoomOffset: -1
+    }).addTo(pickupMap);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      tileSize: 512,
+      zoomOffset: -1
+    }).addTo(dropMap);
+
+    var pickupMarker = L.marker([0, 0]).addTo(pickupMap);
+    var dropMarker = L.marker([0, 0]).addTo(dropMap);
+
+    var pickupInput = document.getElementById('pickup');
+    var dropInput = document.getElementById('drop');
+
+    pickupInput.innerHTML = "Pickup location: ";
+    dropInput.innerHTML = "Drop location: ";
+
+    pickupMap.on('click', function(e) {
+      pickupMarker.setLatLng(e.latlng);
+      pickupInput.innerHTML = "Pickup location: " + e.latlng.lat.toFixed(6) + ", " + e.latlng.lng.toFixed(6);
+    });
+
+    dropMap.on('click', function(e) {
+      dropMarker.setLatLng(e.latlng);
+      dropInput.innerHTML = "Drop location: " + e.latlng.lat.toFixed(6) + ", " + e.latlng.lng.toFixed(6);
+    });
+
+    function changeCarType(value) {
+      var carType = document.getElementById('car-type');
+      if (value == 0) {
+        carType.innerHTML = "Go";
+      } else if (value == 1) {
+        carType.innerHTML = "Sedan";
+      } else {
+        carType.innerHTML = "Luxury";
+      }
+    }
+
+    function changePreference(value) {
+      // Add code to change the preference
+    }
+  </script>
+</body>
+</html>

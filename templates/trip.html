@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trip History</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px;
+    }
+    .user-info {
+      background-color: #f2f2f2;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #ccc;
+      margin: 10px;
+      padding: 20px;
+      text-align: center;
+      width: 300px;
+    }
+    .trips {
+      background-color: #f2f2f2;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #ccc;
+      margin: 10px;
+      padding: 20px;
+      width: 100%;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Trip History</h1>
+  </header>
+  <div class="container">
+    <div class="user-info">
+      <h2>User Dashboard</h2>
+      <?php
+// Connect to database
+$conn = mysqli_connect("localhost", "username", "qwerty", "BidMyRide");
+
+// Check for connection errors
+if (mysqli_connect_errno()) {
+    die("Failed to connect to MySQL: " . mysqli_connect_error());
+}
+
+$user_id = 123; // Replace with actual user ID
+
+// Prepare the SQL statement
+$query = "SELECT username, age, sex, num_trips_completed FROM users WHERE user_id = ?";
+$stmt = mysqli_prepare($conn, $query);
+
+// Check for statement preparation errors
+if (!$stmt) {
+    die("Statement preparation failed: " . mysqli_error($conn));
+}
+
+mysqli_stmt_bind_param($stmt, "i", $user_id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+
+// Check for query execution errors
+if (!$result) {
+    die("Query execution failed: " . mysqli_error($conn));
+}
+
+$row = mysqli_fetch_assoc($result);
+
+// Display user information
+echo "<p>Username: " . $row["username"] . "</p>";
+echo "<p>Age: " . $row["age"] . "</p>";
+echo "<p>Sex: " . $row["sex"] . "</p>";
+echo "<p>Number of Trips Completed: " . $row["num_trips_completed"] . "</p>";
+
+// Close statement and connection
+mysqli_stmt_close($stmt);
+mysqli_close($conn);
+?>
+
+    </div>
+    <div class="trips">
+      <h2>Trips</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Pickup Location</th>
+            <th>Drop Location</th>
+            <th>Distance (km)</th>
+            <th>Amount Paid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+            // Connect to database and fetch trip history
+            $query = "SELECT date, pickup_location, drop_location, distance, amount_paid FROM trips WHERE user_id = $user_id";
+            $result = mysqli_query($conn, $query);
+            // Display trip history
+            while ($row = mysqli_fetch_assoc($result)) {
+              echo "<tr>";
+              echo "<td>" . $row["date"] . "</td>";
+              echo "<td>" . $row["pickup_location"] . "</td>";
+              echo "<td>" . $row["drop_location"] . "</td>";
+              echo "<td>" . $row["distance"] . "</td>";
+              echo "<td>" . $row["amount_paid"] . "</td>";
+              echo "</tr>";
+            }
+            // Close database connection
+            mysqli_close($conn);
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

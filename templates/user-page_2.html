@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Dashboard</title>
+  <style>
+    /* Global styles */
+body {
+  background-color: black;
+  color: goldenrod;
+  font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+#header h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+#book-now {
+  font-size: 24px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: goldenrod;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#book-now:hover {
+  background-color: white;
+}
+
+#wallet {
+  color: green;
+  font-weight: bold;
+  font-size: 28px;
+}
+
+/* Table styles */
+table {
+  margin: auto;
+  border-collapse: collapse;
+  border: 5px solid white;
+  font-size: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: white;
+}
+
+td {
+  background-color: #FDFD96;
+}
+
+/* Trip history table styles */
+#trip-history {
+  margin: 20px auto;
+  border: 5px solid white;
+  font-size: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+#trip-history caption {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+#trip-history th, #trip-history td {
+  padding: 10px;
+  text-align: left;
+}
+
+#trip-history th {
+  background-color: goldenrod;
+  color: black;
+}
+
+#trip-history td {
+  background-color: #FDFD96;
+}
+
+#trip-history tbody tr:nth-child(odd) td {
+  background-color: #F9F9B0;
+}
+
+#trip-history tbody tr:hover td {
+  background-color: #F7DC6F;
+}
+
+  </style>
+</head>
+<body>
+  <div id="header">
+    <h1>User Dashboard</h1>
+    <button id="book-now" onclick="window.location.href='book_now'">BOOK NOW</button>
+    <div id="wallet">
+      Wallet Balance: ${{wallet}}
+    </div>
+  </div>
+  <table>
+    <tr>
+      <th>Name</th>
+      <td>{{name}}</td>
+    </tr>
+    <tr>
+      <th>Age</th>
+      <td>{{age}}</td>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <td>{{sex}}</td>
+    </tr>
+    <tr>
+      <th>Country</th>
+      <td>{{country}}</td>
+    </tr>
+    <tr>
+      <th>Mobile No</th>
+      <td>{{mobile}}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{email}}</td>
+    </tr>
+  </table>
+  <table id="trip-history">
+    <caption>Trip History</caption>
+    <thead>
+      <tr>
+        <th>Request_id</th>
+        <th>Driver ID</th>
+        <th>Date/Time</th>
+        <th>Distance</th>
+        <th>Fare</th>
+        <th>Pickup Location (x,y)</th>
+        <th>Drop Location (x,y)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for trip in trips%}
+      <tr>
+        <td>{{trip.0}}</td>
+        <td>{{trip.1}}</td>
+        <td>{{trip.3}}</td>
+        <td>{{trip.4}} km</td>
+        <td>${{trip.5}}</td>
+        <td>({{trip.6}},{{trip.7}})</td>
+        <td>({{trip.8}},{{trip.9}})</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</body>
+</html>

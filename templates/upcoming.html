@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Link Page</title>
+  </head>
+  <body>
+    <h1>This page is upcoming</h1>
+    <p>click below to continue the process</p>
+    <p>Details</p>
+    {{pick_X}}, {{pick_Y}}
+    {{drop_X}}, {{drop_Y}}
+    {{preference}} , {{vehicle_type}}
+    <form method = "POST">
+      {% csrf_token %}
+      <button type="submit">Book Now</button>
+    </form>
+  </body>
+</html>

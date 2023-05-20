@@ -1,0 +1,186 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>User Dashboard</title>
+  <style>
+    body {
+      background-color: black;
+      color: gold;
+      font-family: Arial, sans-serif;
+    }
+    #header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+    #header h1 {
+      margin: 0;
+    }
+    #header button {
+      background-color: gold;
+      color: black;
+      border: none;
+      padding: 10px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    #header button:hover {
+      background-color: black;
+      color: gold;
+    }
+    #book-now {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 500px;
+    }
+    #trip-history {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 500px;
+    }
+    #wallet {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 500px;
+    }
+    .book-now {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #e3a90c;
+        color: white;
+        padding: 20px;
+        font-size: 30px;
+        border: none;
+        cursor: pointer;
+        margin-left: 50px;
+      }
+      .book-now:hover {
+        background-color: #e3a90c;
+      }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <h1>User Dashboard - Username</h1>
+    <div>
+      <button>Book Now</button>
+      <button>Trip History</button>
+      <button><i class="fa fa-wallet"></i> Wallet</button>
+    </div>
+  </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Dashboard</title>
+  <style>
+    body {
+      background-color: black;
+      color: gold;
+      font-family: Arial, sans-serif;
+    }
+    #header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+    #header h1 {
+      margin: 0;
+    }
+    #header button {
+      background-color: gold;
+      color: black;
+      border: none;
+      padding: 10px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    #header button:hover {
+      background-color: black;
+      color: gold;
+    }
+    #details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      height: 500px;
+    }
+    #details div {
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid gold;
+      border-radius: 5px;
+    }
+    #details div span {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <h1>User Dashboard -{{r[1]}}</h1>
+    <div>
+      <button onclick="window.location.href='book_now.html'" >Book Now</button>
+      <button onclick="window.location.href='trip.html'">Trip History</button>
+      <button onclick="window.location.href='wallet.html'"><i class="fa fa-wallet"></i> Wallet</button>
+    </div>
+  </div>
+  <div id="details">
+    <div>
+      <span>Name:</span> {{r[1]}}
+    </div>
+    <div>
+      <span>Mobile No:</span> r[2]
+    </div>
+    <div>
+      <span>Email:</span> r[3]
+    </div>
+    <div>
+      <span>Age:</span> r[4]
+    </div>
+    <div>
+      <span>Country:</span> r[5]
+    </div>
+    <div>
+      <span>Sex:</span> r[8]
+    </div>
+    <div>
+      <span>Current Location X:</span> r[9]
+    </div>
+    <div>
+      <span>Current Location Y:</span> r[10]
+    </div>
+  </div>
+  <script>
+    // Fetch the user's details using Python and insert them into the HTML code
+    var name = {{r[1]}};
+    var mobileNo = {{r[2]}};
+    var email = {{r[3]}};
+    var age = {{r[4]}};
+    var country = {{r[5]}};
+    var sex = {{r[8]}};
+    var currentLocationX = {{r[9]}};
+    var currentLocationY = 789.012;
+
+    document.querySelector("#details div:nth-child(1)").innerHTML = "<span>Name:</span> " + {{r[0]}};
+    document.querySelector("#details div:nth-child(2)").innerHTML = "<span>Mobile No:</span> " + {{r[2]}};
+    document.querySelector("#details div:nth-child(3)").innerHTML = "<span>Email:</span> " + {{r[3]}};
+    document.querySelector("#details div:nth-child(4)").innerHTML = "<span>Age:</span> " + {{r[4]}};
+    document.querySelector("#details div:nth-child(5)").innerHTML = "<span>Country:</span> " + {{r[5]}};
+    document.querySelector("#details div:nth-child(6)").innerHTML = "<span>Sex:</span> " + {{r[8]}};
+    document.querySelector("#details div:nth-child(7)").innerHTML = "<span>Current Location X:</span> " + {{r[9]}};
+    document.querySelector("#details div:nth-child(8)").innerHTML = "<span>Current Location Y:</span> " + {{r[10]}};
+  </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Driver Details</title>
+  <style>
+    body {
+      background-color: black;
+      color: goldenrod;
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+      font-size: 30px;
+    }
+    
+    table {
+      margin: auto;
+      border-collapse: collapse;
+      border: 5px solid white;
+      font-size: 20px;
+    }
+    
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: white;
+    }
+    
+    td {
+      background-color: #FDFD96;
+    }
+    
+    form {
+      margin: auto;
+      width: 50%;
+      padding: 20px;
+      background-color: #FDFD96;
+      border: 1px solid white;
+      border-radius: 10px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+    
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 24px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 20px;
+    }
+    
+    input[type="submit"], button {
+      background-color: goldenrod;
+      color: black;
+      font-size: 24px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    
+    a {
+      color: goldenrod;
+      text-decoration: none;
+    }
+    
+    .alert {
+      padding: 20px;
+      margin-bottom: 15px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+    }
+    
+  </style>
+</head>
+<body>
+  <h1>Driver Details</h1>
+  <table>
+    <tr>
+      <th>Name</th>
+      <td>{{driver_name}}</td>
+    </tr>
+    <tr>
+      <th>Age</th>
+      <td>{{age}}</td>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <td>{{gender}}</td>
+    </tr>
+    <tr>
+      <th>Vehicle Number</th>
+      <td>{{vehicle_id}}</td>
+    </tr>
+    <tr>
+      <th>Car Name</th>
+      <td>{{car_name}}</td>
+    </tr>
+    <tr>
+      <th>Vehicle Type</th>
+      <td>{{car_type}}</td>
+    </tr>
+  </table>
+  <li> </li>
+  <form method = "POST">
+    {%csrf_token%}
+    <label for="otp">Enter OTP:</label>
+    <input type="text" id="otp" name="otp" required>
+    <input type="submit" value="Validate OTP">
+  </form>
+  {% if error_message %}
+    <div class="alert alert-danger alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Error:</strong> {{ error_message }}
+    </div>
+  {% endif %}
+</body>
+</html>
